@@ -1,7 +1,7 @@
 import React from 'react';
 import moment from 'moment';
-import './App.css';
-import './roboto.css'
+import '../App.css';
+import '../roboto.css'
 
 class Clock extends React.Component {
   state = {
