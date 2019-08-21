@@ -9,15 +9,15 @@ class Clock extends React.Component {
     time: moment().format('h:mm:ss a')
   }
 
-  componentDidMount() {
+  componentDidMount = () => {
     this.interval = setInterval(() => this.setState({ date: moment().format('MMMM Do YYYY'), time: moment().format('h:mm:ss a')}), 1000);
   }
 
-  componentWillUnmount() {
+  componentWillUnmount = () => {
     clearInterval(this.interval);
   }
 
-  render() {
+  render = () => {
     return (
       <div className="region left">
         <span className="small">{this.state.date}</span>

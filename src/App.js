@@ -3,7 +3,7 @@ import './App.css';
 import Clock from './components/clock.js'
 import Weather from './components/weather.js'
 
-function App() {
+const App = () => {
   return (
     <div>
       <Clock />

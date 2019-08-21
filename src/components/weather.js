@@ -22,7 +22,7 @@ class Weather extends React.Component {
   //   return this.props.fetchWeather(weatherParams)
   // }
 
-  render() {
+  render = () => {
     if (config.currWeather) {
     return (
     <div className="region bottom">
