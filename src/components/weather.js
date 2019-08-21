@@ -27,18 +27,20 @@ class Weather extends React.Component {
     return (
     <div className="region bottom">
       <table>
-        <tr>
-          <td className="icon2 xlarge" rowSpan='2'>
-            <i className={"wi " + config.codeIconTable[config.currWeather.weather.code]}></i>
-          </td>
-          <td className="title2 bright" colSpan="4" align="center">{config.currWeather.weather.description.split()}</td>
-        </tr>
-        <tr>
-          <td className="small">{"Feels Like " + config.currWeather.app_temp + " °F (" + config.currWeather.temp + "°F)"}</td>
-        </tr>
-        <tr>
-          <td>{}</td>
-        </tr>
+        <tbody>
+          <tr>
+            <td className="icon2 xlarge" rowSpan='2'>
+              <i className={"wi " + config.codeIconTable[config.currWeather.weather.code]}></i>
+            </td>
+            <td className="title2 bright" colSpan="4" align="center">{config.currWeather.weather.description.split()}</td>
+          </tr>
+          <tr>
+            <td className="small">{"Feels Like " + config.currWeather.app_temp + " °F (" + config.currWeather.temp + "°F)"}</td>
+          </tr>
+          <tr>
+            <td>{}</td>
+          </tr>
+        </tbody>
       </table>
     </div>
   )} else {
