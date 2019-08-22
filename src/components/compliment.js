@@ -26,7 +26,7 @@ class Compliment extends React.Component {
     if (this.props.compliments[0]) {
       const randomCompliment = this.props.compliments[Math.floor(Math.random() * this.props.compliments.length)]
       return (
-        <div className='region lower third '>
+        <div className='region lower third'>
         <span className='light bright'>{randomCompliment.message}</span>
         </div>
       )
