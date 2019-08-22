@@ -8,34 +8,39 @@ import { config } from "../config"
 
 class Weather extends React.Component {
 
-  // componentDidMount = () => {
-  //   this.getWeather();
-  // }
+  componentDidMount = () => {
+    this.getWeather();
+    this.interval = setInterval(() => this.getWeather(), 15 * 60 * 1000);
+  }
 
-  // getWeather = () => {
-  //   const weatherParams = {
-  //     key: config.WEATHER_API_KEY,
-  //     city: "Raleigh,NC",
-  //     units: "I"
-  //   }
+  componentWillUnmount = () => {
+    clearInterval(this.interval);
+  }
 
-  //   return this.props.fetchWeather(weatherParams)
-  // }
+  getWeather = () => {
+    const weatherParams = {
+      key: config.WEATHER_API_KEY,
+      city: "Raleigh,NC",
+      units: "I"
+    }
+
+    return this.props.fetchWeather(weatherParams)
+  }
 
   render = () => {
-    if (config.currWeather) {
+    if (this.props.currentWeather.weather) {
     return (
     <div className="region bottom">
       <table>
         <tbody>
           <tr>
             <td className="icon2 xlarge" rowSpan='2'>
-              <i className={"wi " + config.codeIconTable[config.currWeather.weather.code]}></i>
+              <i className={"wi " + config.codeIconTable[this.props.currentWeather.weather.code]}></i>
             </td>
-            <td className="title2 bright" colSpan="4" align="center">{config.currWeather.weather.description.split()}</td>
+            <td className="title2 bright" colSpan="4" align="center">{this.props.currentWeather.weather.description.split()}</td>
           </tr>
           <tr>
-            <td className="small">{"Feels Like " + config.currWeather.app_temp + " °F (" + config.currWeather.temp + "°F)"}</td>
+            <td className="small">{"Feels Like " + this.props.currentWeather.app_temp + "°F (" + this.props.currentWeather.temp + "°F)"}</td>
           </tr>
           <tr>
             <td>{}</td>
