@@ -4,7 +4,6 @@ import '../roboto.css'
 import { fetchCompliments } from '../actions'
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import { config } from "../config";
 import moment from 'moment';
 
 class Compliment extends React.Component {
