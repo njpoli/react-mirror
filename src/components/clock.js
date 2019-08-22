@@ -22,7 +22,7 @@ class Clock extends React.Component {
       <div className="region left">
         <span className="small">{this.state.date}</span>
         <br />
-        <span className="large thin">{this.state.time}</span>
+        <span className="thin">{this.state.time}</span>
 
       </div>
   )}

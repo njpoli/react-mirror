@@ -46,4 +46,12 @@ router.get('/', (req, res, next) => {
   }
 })
 
+router.post('/', (req, res, next) => {
+  const newCompliment = new Compliment(req.body);
+  newCompliment.save((err, result) => {
+    if (err) return next(err);
+    res.send(result);
+  })
+})
+
 module.exports = router;

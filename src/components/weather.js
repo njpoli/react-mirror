@@ -15,10 +15,9 @@ class Weather extends React.Component {
   getWeather = () => {
     const weatherParams = {
       key: config.WEATHER_API_KEY,
-      city: "Raleigh,NC",
+      city: "Durham,NC",
       units: "I"
     }
-
     return this.props.fetchWeather(weatherParams)
   }
 
@@ -48,9 +47,8 @@ class Weather extends React.Component {
       <div className="region bottom">
         <p className="thin">Loading Weather...</p>
       </div>
-    )
-  }}
-  
+    )}
+  }
 }
 
 const mapStateToProps = (state) => {

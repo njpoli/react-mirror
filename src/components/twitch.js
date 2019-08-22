@@ -39,8 +39,6 @@ class Twitch extends React.Component {
       <div className="region bar"></div>
     )
   }
-
-
 }
 
 const mapStateToProps = (state) => {
