@@ -16,6 +16,7 @@ const UserSchema = new Schema({
 UserSchema.pre('save', next => {
   const currentDate = new Date();
   this.created_at = currentDate;
+  next();
 })
 
 module.exports = mongoose.model('User', UserSchema);
