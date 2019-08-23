@@ -3,6 +3,7 @@ import './App.css';
 import Clock from './components/clock.js'
 import Weather from './components/weather.js'
 import Twitch from './components/twitch.js'
+import Compliment from './components/compliment.js'
 
 const App = () => {
   return (
@@ -10,6 +11,7 @@ const App = () => {
       <Clock />
       <Weather />
       <Twitch />
+      <Compliment />
     </div>
   );
 }

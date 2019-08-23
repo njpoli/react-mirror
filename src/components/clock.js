@@ -20,9 +20,9 @@ class Clock extends React.Component {
   render = () => {
     return (
       <div className="region left">
-        <span className="small">{this.state.date}</span>
+        <span className="small bold bright">{this.state.date}</span>
         <br />
-        <span className="large thin">{this.state.time}</span>
+        <span className="bold bright">{this.state.time}</span>
 
       </div>
   )}
