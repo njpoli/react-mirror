@@ -1,10 +1,11 @@
 import axios from 'axios'
-import { FETCH_WEATHER, FETCH_TWITCH_STREAMS, FETCH_COMPLIMENTS } from './types'
+import { FETCH_WEATHER, FETCH_TWITCH_STREAMS, FETCH_COMPLIMENTS, FETCH_USERS } from './types'
 import { config } from '../config'
 
 const ROOT_WEATHER_URL = "https://api.weatherbit.io/v2.0/current"
 const ROOT_TWITCH_STREAM_URL = "https://api.twitch.tv/helix/streams"
 const ROOT_COMPLIMENTS_URL = "http://localhost:8000/compliments"
+const ROOT_USERS_URL = "http://localhost:8000/users"
 
 export const fetchWeather = (params) => dispatch => {
   axios.get(`${ROOT_WEATHER_URL}`, {
@@ -34,6 +35,16 @@ export const fetchCompliments = (params) => dispatch => {
   axios.get(`${ROOT_COMPLIMENTS_URL}`, {
     params: { ...params}
   })
+    .then(response => {
+      dispatch({ type: FETCH_COMPLIMENTS, payload: response.data})
+    })
+    .catch(error => {
+      console.log(error)
+    })
+}
+
+export const fetchUsers = () => dispatch => {
+  axios.get(`${ROOT_USERS_URL}`)
     .then(response => {
       dispatch({ type: FETCH_COMPLIMENTS, payload: response.data})
     })
