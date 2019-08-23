@@ -17,6 +17,6 @@ ComplimentSchema.pre('save', (next) => {
   const currentDate = new Date();
   this.created_at = currentDate;
   next();
-  })
+})
 
 module.exports = mongoose.model('Compliment', ComplimentSchema);
