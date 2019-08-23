@@ -29,16 +29,16 @@ class Weather extends React.Component {
       <table>
         <tbody>
           <tr>
-            <td className="icon2 xlarge" rowSpan='3'>
+            <td className="icon2 xlarge bright" rowSpan='3'>
               <i className={"wi " + config.codeIconTable[this.props.currentWeather.weather.code]}></i>
             </td>
             <td className="title2 bright" colSpan="4" align="center">{this.props.currentWeather.weather.description.split()}</td>
           </tr>
           <tr>
-            <td className="small" colSpan="4" align="left">{this.props.currentWeather.temp + "°F"}</td>
+            <td className="small bright" colSpan="4" align="left">{this.props.currentWeather.temp + "°F"}</td>
           </tr>
           <tr>
-            <td className="small" align="left">{this.props.currentWeather.city_name + ', ' + this.props.currentWeather.state_code}</td>
+            <td className="small bright" align="left">{this.props.currentWeather.city_name + ', ' + this.props.currentWeather.state_code}</td>
           </tr>
         </tbody>
       </table>

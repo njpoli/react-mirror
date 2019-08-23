@@ -30,9 +30,9 @@ class Twitch extends React.Component {
       const momentStreamerTime = moment(randomStreamerTime, 'HH:mm:ss').subtract(4, 'h').format('h:mm a');
       return (
         <div className="region bar">
-          <span className="bold small">Twitch</span>
+          <span className="bold small bright">Twitch</span>
           <br />
-          <span className="thin small">{randomStreamer.user_name} started streaming at {momentStreamerTime}</span>
+          <span className="bold small bright">{randomStreamer.user_name} started streaming at {momentStreamerTime}</span>
         </div>
     ) }
     else return (
