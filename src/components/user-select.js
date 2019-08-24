@@ -49,7 +49,7 @@ class UserSelect extends React.Component {
           {this.state.current_user.widgets.map((widget, index) => {
             if (this.state.components[widget.name]) {
               return React.createElement(this.state.components[widget.name],
-                {key: index, location: widget.location})
+                {key: index, location: widget.location, current_user : this.state.current_user})
             }
           })}
         </div>

@@ -1,7 +1,7 @@
 import React from 'react'
 import '../App.css'
 import '../roboto.css'
-import { fetchCompliments } from '../actions'
+import { fetchCompliments, saveIntervals } from '../actions'
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import moment from 'moment';
@@ -9,7 +9,15 @@ import moment from 'moment';
 class Compliment extends React.Component {
   componentDidMount = () => {
     this.getCompliments();
-    this.setInterval = setInterval(() => this.getCompliments(), 1 * 60 * 1000);
+    const self = this
+    const checkInterval = this.props.saved_intervals.filter((item) => item.name == self.props.current_user.name && item.widget == 'Compliment')
+    if (checkInterval.length == 0)
+    {
+      console.log(checkInterval)
+      this.setInterval = setInterval(() => this.getCompliments(), 1 * 60 * 1000);
+      this.props.saveIntervals([...this.props.saved_intervals, {name: this.props.current_user.name, widget: 'Compliment'}])
+    }
+
   }
 
   componentWillUnmount = () => {
@@ -40,13 +48,14 @@ class Compliment extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    compliments: state.compliments
+    compliments: state.compliments,
+    saved_intervals : state.saved_intervals
   }
 }
 
 const mapDispatchToProps = (dispatch) =>  {
   return bindActionCreators(
-    { fetchCompliments },
+    { fetchCompliments, saveIntervals },
     dispatch
   )
 }
