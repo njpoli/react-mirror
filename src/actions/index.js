@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { FETCH_WEATHER, FETCH_TWITCH_STREAMS, FETCH_COMPLIMENTS, FETCH_USERS } from './types'
+import { FETCH_WEATHER, FETCH_TWITCH_STREAMS, FETCH_COMPLIMENTS, FETCH_USERS, SAVE_INTERVALS } from './types'
 import { config } from '../config'
 
 const ROOT_WEATHER_URL = "https://api.weatherbit.io/v2.0/current"
@@ -51,4 +51,10 @@ export const fetchUsers = () => dispatch => {
     .catch(error => {
       console.log(error)
     })
+}
+
+
+//Function to save currently running intervals so they do not keep getting added
+export const saveIntervals = (params) => dispatch => {
+  dispatch({type : SAVE_INTERVALS, payload: params})
 }
