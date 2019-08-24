@@ -25,7 +25,7 @@ class Weather extends React.Component {
   render = () => {
     if (this.props.currentWeather.weather) {
     return (
-    <div className="region bottom">
+    <div className={this.props.location}>
       <table>
         <tbody>
           <tr>
@@ -45,7 +45,7 @@ class Weather extends React.Component {
     </div>
   )} else {
     return (
-      <div className="region bottom">
+      <div className={this.props.location}>
         <p className="thin">Loading Weather...</p>
       </div>
     )}

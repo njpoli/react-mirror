@@ -46,7 +46,7 @@ export const fetchCompliments = (params) => dispatch => {
 export const fetchUsers = () => dispatch => {
   axios.get(`${ROOT_USERS_URL}`)
     .then(response => {
-      dispatch({ type: FETCH_COMPLIMENTS, payload: response.data})
+      dispatch({ type: FETCH_USERS, payload: response.data})
     })
     .catch(error => {
       console.log(error)
