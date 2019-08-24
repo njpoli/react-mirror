@@ -19,7 +19,7 @@ class Clock extends React.Component {
 
   render = () => {
     return (
-      <div className="region left">
+      <div className={this.props.location}>
         <span className="small bold bright">{this.state.date}</span>
         <br />
         <span className="bold bright">{this.state.time}</span>

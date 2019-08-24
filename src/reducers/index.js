@@ -1,12 +1,14 @@
 import WeatherReducer from './weather-reducer'
 import TwitchStreamsReducer from './twitch-streams-reducer'
-import ComplimentSReducer from './compliments-reducer'
+import ComplimentsReducer from './compliments-reducer'
+import UsersReducer from './users-reducer'
 import { combineReducers } from "redux";
 
 const rootReducer = combineReducers({
   current_weather: WeatherReducer,
   twitch_streams : TwitchStreamsReducer,
-  compliments : ComplimentSReducer
+  compliments : ComplimentsReducer,
+  users : UsersReducer
 });
 
 export default rootReducer;
