@@ -10,7 +10,7 @@ const rootReducer = combineReducers({
   twitch_streams : TwitchStreamsReducer,
   compliments : ComplimentsReducer,
   users : UsersReducer,
-  save_intervals : SaveIntervalsReducer
+  saved_intervals : SaveIntervalsReducer
 });
 
 export default rootReducer;
