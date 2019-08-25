@@ -1,7 +1,7 @@
 import React from 'react'
 import '../App.css'
 import '../roboto.css'
-import { fetchTwitchStreams } from '../actions'
+import { fetchTwitchStreams, saveIntervals } from '../actions'
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { config } from "../config";
@@ -11,7 +11,13 @@ class Twitch extends React.Component {
 
   componentDidMount = () => {
     this.getTwitchStreams();
-    this.interval = setInterval(() => this.getTwitchStreams(), 3 * 60 * 1000);
+    const self = this
+    const checkInterval = this.props.saved_intervals.filter((item) => item.name == self.props.current_user.name && item.widget == 'Twitch')
+    if (checkInterval.length == 0)
+    {
+      this.setInterval = setInterval(() => this.getTwitchStreams(), 3 * 60 * 1000);
+      this.props.saveIntervals([...this.props.saved_intervals, {name: this.props.current_user.name, widget: 'Twitch'}])
+    }
   }
 
   componentWillUnmount = () => {
@@ -29,29 +35,28 @@ class Twitch extends React.Component {
       const randomStreamerTime = randomStreamer.started_at.split('T')[1].split('Z');
       const momentStreamerTime = moment(randomStreamerTime, 'HH:mm:ss').subtract(4, 'h').format('h:mm a');
       return (
-        <div className="region bar">
-          <span className="bold small">Twitch</span>
+        <div className={this.props.location}>
+          <span className="bold small bright">Twitch</span>
           <br />
-          <span className="thin small">{randomStreamer.user_name} started streaming at {momentStreamerTime}</span>
+          <span className="bold small bright">{randomStreamer.user_name} started streaming at {momentStreamerTime}</span>
         </div>
     ) }
     else return (
-      <div className="region bar"></div>
+      <div className={this.props.location}></div>
     )
   }
-
-
 }
 
 const mapStateToProps = (state) => {
   return {
-    twitch_streams: state.twitch_streams
+    twitch_streams: state.twitch_streams,
+    saved_intervals : state.saved_intervals
   }
 }
 
 const mapDispatchToProps = (dispatch) =>  {
   return bindActionCreators(
-    { fetchTwitchStreams },
+    { fetchTwitchStreams, saveIntervals },
     dispatch
   )
 }
