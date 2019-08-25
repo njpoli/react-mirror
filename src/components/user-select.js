@@ -9,6 +9,7 @@ import Clock from './clock.js'
 import Weather from './weather.js'
 import Twitch from './twitch.js'
 import Compliment from './compliment.js'
+import News from './news.js'
 
 
 //This class should allow selection of a user to get their specific configuration from
@@ -20,7 +21,8 @@ class UserSelect extends React.Component {
       "Clock" : Clock,
       "Weather" : Weather,
       "Twitch" : Twitch,
-      "Compliment" : Compliment
+      "Compliment" : Compliment,
+      "News" : News
     },
     welcomeMessage : null
   }
