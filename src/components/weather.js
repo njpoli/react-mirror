@@ -4,12 +4,17 @@ import '../roboto.css'
 import { fetchWeather } from '../actions'
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import { config } from "../config"
+import { config } from "../config";
+import { local_data } from "../local-data"
 
 class Weather extends React.Component {
 
+  state = {
+    currentWeather : {}
+  }
+  
   componentDidMount = () => {
-    this.getWeather();
+    this.setState({currentWeather : local_data.currentWeather})
   }
 
   //Gets the current weather for Durham, NC
@@ -23,22 +28,22 @@ class Weather extends React.Component {
   }
 
   render = () => {
-    if (this.props.currentWeather.weather) {
+    if (this.state.currentWeather.weather) {
     return (
     <div className={this.props.location}>
       <table>
         <tbody>
           <tr>
             <td className="icon2 xlarge bright" rowSpan='3'>
-              <i className={"wi " + config.codeIconTable[this.props.currentWeather.weather.code]}></i>
+              <i className={"wi " + config.codeIconTable[this.state.currentWeather.weather.code]}></i>
             </td>
-            <td className="title2 bright" colSpan="4" align="center">{this.props.currentWeather.weather.description.split()}</td>
+            <td className="title2 bright" colSpan="4" align="center">{this.state.currentWeather.weather.description.split()}</td>
           </tr>
           <tr>
-            <td className="small bright" colSpan="4" align="left">{this.props.currentWeather.temp + "°F"}</td>
+            <td className="small bright" colSpan="4" align="left">{this.state.currentWeather.temp + "°F"}</td>
           </tr>
           <tr>
-            <td className="small bright" align="left">{this.props.currentWeather.city_name + ', ' + this.props.currentWeather.state_code}</td>
+            <td className="small bright" align="left">{this.state.currentWeather.city_name + ', ' + this.state.currentWeather.state_code}</td>
           </tr>
         </tbody>
       </table>

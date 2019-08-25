@@ -4,16 +4,15 @@ import '../roboto.css'
 import { fetchUsers } from '../actions'
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import { config } from "../config";
 import Clock from './clock.js'
 import Weather from './weather.js'
 import Twitch from './twitch.js'
 import Compliment from './compliment.js'
 import News from './news.js'
+import { local_data } from '../local-data'
 
 
-//This class should allow selection of a user to get their specific configuration from
-//Mongo, then render their specific configuration
+//Using local data in case of wifi issues at demo night location
 class UserSelect extends React.Component {
   state = {
     current_user : {},
@@ -28,14 +27,13 @@ class UserSelect extends React.Component {
   }
 
   componentDidMount = () => {
-    this.props.fetchUsers();
     document.addEventListener('keydown', this.handleKeyDown)
   }
 
   handleKeyDown = (event) => {
     const index = event.keyCode - 49;
-    if (this.props.users[index]) {
-      this.setState({current_user : this.props.users[index], welcomeMessage : `Welcome ${this.props.users[index].name}`});
+    if (local_data.users[index]) {
+      this.setState({current_user : local_data.users[index], welcomeMessage : `Welcome ${local_data.users[index].name}`});
       setTimeout(() => { this.setState({welcomeMessage : null})}, 5 * 1000)
 
     } else if (event.keyCode === 27) {
@@ -57,11 +55,11 @@ class UserSelect extends React.Component {
         </div>
       )
     }
-    if (this.props.users.length > 0) {
+    if (local_data.users.length > 0) {
       return (
         <div>
           <h1 className="bright" style={{textAlign: 'center'}}>Please select a user</h1>
-          {this.props.users.map((user, index) => 
+          {local_data.users.map((user, index) => 
             <p className="bright" key={user._id}>{index + 1} - {user.name}</p>)}
         </div>
       )
