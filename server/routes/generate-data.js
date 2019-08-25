@@ -54,6 +54,10 @@ const defaultUsers = [
       {
         name: 'Compliment',
         location: 'region lower third'
+      },
+      {
+        name: 'News',
+        location: 'region bar'
       }
     ]
   }
