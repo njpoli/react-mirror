@@ -1,23 +1,36 @@
 const router = require('express').Router();
-const User = require('../models/user');
+var mysql = require('mysql');
+var pool  = mysql.createPool({
+  connectionLimit : 10,
+  host            : 'localhost',
+  user            : 'nate',
+  password        : 'password',
+  database        : 'finalproject'
+});
 
-
-// select UserTable.userID as "userID", userTable.name as "userName", 
-// widget.wID as "widgetID", widget.name as "widgetName", userWidgetJoin.location
-// from UserTable, Widget, UserWidgetJoin
-// where UserTable.userID = UserWidgetJoin.userID
-// and Widget.wID = UserWidgetJoin.wID
-// order by userName;
+const groupBy = (objectArray, property) => {
+  return objectArray.reduce(function (acc, obj) {
+    var key = obj[property];
+    if (!acc[key]) {
+      acc[key] = [];
+    }
+    acc[key].push(obj);
+    return acc;
+  }, {});
+}
 
 router.get('/', (req, res, next) => {
-  User
-    .find()
-    .exec((err, users) => {
-      if (err) {
-        res.status(400).send('Unable to find users')
-      }
-      res.send(users);
-    })
+  pool.query(
+  `select UserTable.userID as "userID", userTable.name as "userName", 
+  widget.wID as "widgetID", widget.name as "widgetName", userWidgetJoin.location
+  from UserTable, Widget, UserWidgetJoin
+  where UserTable.userID = UserWidgetJoin.userID
+  and Widget.wID = UserWidgetJoin.wID
+  order by userName`, (error, results, fields) => {
+    if (error) throw error;
+    let users = groupBy(results, 'userName')
+    res.json(users);
+  })
 })
 
 module.exports = router;
