@@ -1,7 +1,7 @@
 /* CSS file taken from Magic Mirror 2 */
 
 html {
-  /*cursor: none;*/
+  cursor: none;
   overflow: hidden;
   background: #000;
 }
