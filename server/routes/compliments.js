@@ -22,7 +22,7 @@ router.get('/', (req, res, next) => {
     const noon = [12, 18]
     if (timeQuery >= morning[0] && timeQuery <= morning[1]) {
       pool.query(
-        `select * from compliment
+        `select * from Compliment
           where time = "Morning"
           or time = "Anytime"`, (error, results, fields) => {
             if (error) throw error;
@@ -30,7 +30,7 @@ router.get('/', (req, res, next) => {
           })
     } else if (timeQuery >= noon[0] && timeQuery <= noon[1]) {
       pool.query(
-        `select * from compliment
+        `select * from Compliment
           where time = "Afternoon"
           or time = "Anytime"`, (error, results, fields) => {
             if (error) throw error;
@@ -38,7 +38,7 @@ router.get('/', (req, res, next) => {
           })
     } else {
       pool.query(
-        `select * from compliment
+        `select * from Compliment
           where time = "Night"
           or time = "Anytime"`, (error, results, fields) => {
             if (error) throw error;

@@ -26,9 +26,8 @@ insert into UserWidgetJoin values(302, 101, 202, 'region lower third');
 insert into UserWidgetJoin values(303, 101, 203, 'region bar');
 insert into UserWidgetJoin values(304, 101, 204, 'region bottom');
 insert into UserWidgetJoin values(305, 102, 201, 'region right');
-insert into UserWidgetJoin values(306, 102, 202, 'region lower third');
+insert into UserWidgetJoin values(306, 102, 205, 'region lower third');
 insert into UserWidgetJoin values(307, 102, 204, 'region left');
-insert into UserWidgetJoin values(308, 102, 205, 'region bar');
 
 insert into Compliment values(401, 'You look great this morning!', 'Morning');
 insert into Compliment values(402, 'You look great this afternoon!', 'Afternoon');
