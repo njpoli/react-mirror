@@ -29,10 +29,6 @@ class News extends React.Component {
     }
   }
 
-  componentWillUnmount = () => {
-    clearInterval(this.interval);
-  }
-
   getNews = () => {
     const params = {
       apiKey : config.NEWS_API_KEY,

@@ -19,10 +19,6 @@ class Compliment extends React.Component {
 
   }
 
-  componentWillUnmount = () => {
-    clearInterval(this.interval);
-  }
-
   getCompliments = () => {
     const hour = moment().hour();
     const params = { time : hour};
