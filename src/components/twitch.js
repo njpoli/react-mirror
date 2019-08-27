@@ -34,10 +34,6 @@ class Twitch extends React.Component {
     }
   }
 
-  componentWillUnmount = () => {
-    clearInterval(this.interval);
-  }
-
   getTwitchStreams = () => {
     const myStreamsString = config.MY_TWITCH_STREAM_DATA.data.map(followed => `user_login=${followed.to_name}`).join('&')
     return this.props.fetchTwitchStreams(myStreamsString);

@@ -34,7 +34,7 @@ class Weather extends React.Component {
       <table>
         <tbody>
           <tr>
-            <td className="icon2 xlarge bright" rowSpan='3'>
+            <td className="icon2 large bright" rowSpan='3'>
               <i className={"wi " + config.codeIconTable[this.state.currentWeather.weather.code]}></i>
             </td>
             <td className="title2 bright" colSpan="4" align="center">{this.state.currentWeather.weather.description.split()}</td>

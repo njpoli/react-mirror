@@ -22,10 +22,6 @@ class Clock extends React.Component {
     }
   }
 
-  componentWillUnmount = () => {
-    clearInterval(this.interval);
-  }
-
   render = () => {
     return (
       <div className={this.props.location}>
