@@ -12,7 +12,7 @@ router.get('/', (req, res, next) => {
   let timeQuery = req.query.time;
   if (!timeQuery) {
     pool.query(
-      `select * from compliment`, (error, results, fields) => {
+      `select * from Compliment`, (error, results, fields) => {
         if (error) throw error;
         res.json(results);
       }

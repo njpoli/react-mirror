@@ -21,8 +21,8 @@ const groupBy = (objectArray, property) => {
 
 router.get('/', (req, res, next) => {
   pool.query(
-  `select UserTable.userID as "userID", userTable.name as "userName", 
-  widget.wID as "widgetID", widget.name as "widgetName", userWidgetJoin.location
+  `select UserTable.userID as "userID", UserTable.name as "userName", 
+  Widget.wID as "widgetID", Widget.name as "widgetName", UserWidgetJoin.location
   from UserTable, Widget, UserWidgetJoin
   where UserTable.userID = UserWidgetJoin.userID
   and Widget.wID = UserWidgetJoin.wID
