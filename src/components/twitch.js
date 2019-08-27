@@ -12,8 +12,8 @@ class Twitch extends React.Component {
   componentDidMount = () => {
     this.getTwitchStreams();
     const self = this
-    const checkInterval = this.props.saved_intervals.filter((item) => item.name == self.props.current_user.name && item.widget == 'Twitch')
-    if (checkInterval.length == 0)
+    const checkInterval = this.props.saved_intervals.filter((item) => item.name === self.props.current_user.name && item.widget === 'Twitch')
+    if (checkInterval.length === 0)
     {
       this.setInterval = setInterval(() => this.getTwitchStreams(), 3 * 60 * 1000);
       this.props.saveIntervals([...this.props.saved_intervals, {name: this.props.current_user.name, widget: 'Twitch'}])

@@ -10,8 +10,8 @@ class Compliment extends React.Component {
   componentDidMount = () => {
     this.getCompliments();
     const self = this
-    const checkInterval = this.props.saved_intervals.filter((item) => item.name == self.props.current_user.name && item.widget == 'Compliment')
-    if (checkInterval.length == 0)
+    const checkInterval = this.props.saved_intervals.filter((item) => item.name === self.props.current_user.name && item.widget === 'Compliment')
+    if (checkInterval.length === 0)
     {
       this.setInterval = setInterval(() => this.getCompliments(), 1 * 60 * 1000);
       this.props.saveIntervals([...this.props.saved_intervals, {name: this.props.current_user.name, widget: 'Compliment'}])

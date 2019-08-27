@@ -4,7 +4,6 @@ import '../roboto.css'
 import { fetchUsers } from '../actions'
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import { config } from "../config";
 import Clock from './clock.js'
 import Weather from './weather.js'
 import Twitch from './twitch.js'
@@ -24,7 +23,14 @@ class UserSelect extends React.Component {
       "Compliment" : Compliment,
       "News" : News
     },
-    welcomeMessage : null
+    welcomeMessage : null,
+    users : []
+  }
+
+  componentDidUpdate = (prevProps) => {
+    if (prevProps.users !== this.props.users) {
+      this.setState({users: Object.entries(this.props.users)})
+    }
   }
 
   componentDidMount = () => {
@@ -34,8 +40,8 @@ class UserSelect extends React.Component {
 
   handleKeyDown = (event) => {
     const index = event.keyCode - 49;
-    if (this.props.users[index]) {
-      this.setState({current_user : this.props.users[index], welcomeMessage : `Welcome ${this.props.users[index].name}`});
+    if (this.state.users[index]) {
+      this.setState({current_user : this.state.users[index], welcomeMessage : `Welcome ${this.state.users[index][0]}`});
       setTimeout(() => { this.setState({welcomeMessage : null})}, 5 * 1000)
 
     } else if (event.keyCode === 27) {
@@ -44,25 +50,25 @@ class UserSelect extends React.Component {
   }
 
   render = () => {
-    if (this.state.current_user.name) {
+    if (this.state.current_user[0]) {
       return (
         <div>
           <span className="region middle center bright large">{this.state.welcomeMessage}</span>
-          {this.state.current_user.widgets.map((widget, index) => {
-            if (this.state.components[widget.name]) {
-              return React.createElement(this.state.components[widget.name],
+          {this.state.current_user[1].map((widget, index) => {
+            if (this.state.components[widget.widgetName]) {
+              return React.createElement(this.state.components[widget.widgetName],
                 {key: index, location: widget.location, current_user : this.state.current_user})
-            }
+            } else return null;
           })}
         </div>
       )
     }
-    if (this.props.users.length > 0) {
+    if ( this.state.users ) {
       return (
         <div>
           <h1 className="bright" style={{textAlign: 'center'}}>Please select a user</h1>
-          {this.props.users.map((user, index) => 
-            <p className="bright" key={user._id}>{index + 1} - {user.name}</p>)}
+          {this.state.users.map((user, index) => 
+            <p className="bright" key={index}>{index + 1} - {user[0]}</p>)}
         </div>
       )
     }

@@ -14,8 +14,8 @@ class Clock extends React.Component {
 
   componentDidMount = () => {
     const self = this
-    const checkInterval = this.props.saved_intervals.filter((item) => item.name == self.props.current_user.name && item.widget == 'Clock')
-    if (checkInterval.length == 0)
+    const checkInterval = this.props.saved_intervals.filter((item) => item.name === self.props.current_user.name && item.widget === 'Clock')
+    if (checkInterval.length === 0)
     {
       this.setInterval = setInterval(() => this.setState({ date: moment().format('MMMM Do YYYY'), time: moment().format('h:mm:ss a')}), 1000);
       this.props.saveIntervals([...this.props.saved_intervals, {name: this.props.current_user.name, widget: 'Clock'}])

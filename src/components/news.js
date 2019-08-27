@@ -21,8 +21,8 @@ class News extends React.Component {
   componentDidMount = () => {
     this.getNews();
     const self = this
-    const checkInterval = this.props.saved_intervals.filter((item) => item.name == self.props.current_user.name && item.widget == 'News')
-    if (checkInterval.length == 0)
+    const checkInterval = this.props.saved_intervals.filter((item) => item.name === self.props.current_user.name && item.widget === 'News')
+    if (checkInterval.length === 0)
     {
       this.setInterval = setInterval(() => this.setState({randomNewsTopic : this.props.news[Math.floor(Math.random() * this.props.news.length)]}), 20 * 1000)
       this.props.saveIntervals([...this.props.saved_intervals, {name: this.props.current_user.name, widget: 'News'}])
